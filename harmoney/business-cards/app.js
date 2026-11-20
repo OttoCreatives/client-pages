@@ -67,7 +67,7 @@ $("dl").addEventListener("click", async () => {
     a.href = URL.createObjectURL(new Blob([out.bytes], { type: "application/pdf" }));
     a.download = `Harmoney business card ${d.name} ${colour}.pdf`.replace(/[\\/:*?"<>|]/g, "");
     a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
-    say("Downloaded. Send this PDF to the printer (step 2).");
+    say("Downloaded. Send this PDF to the printer as it is.");
   } catch (e) {
     console.error(e); say("Something went wrong making the file. Reload the page and try again.", "warn");
   } finally { $("dl").disabled = false; }
