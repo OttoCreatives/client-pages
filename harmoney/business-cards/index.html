@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Harmoney business cards</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://use.typekit.net/zui5iyp.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@1,600&display=swap">
+<style>
+/* Otto-style setup page (Figma "Mail signature setup page", Len's design 8 Oct 2026): Otto nav, grey cards on white,
+   step 1 = fields + live mail preview + one copy button (version tabs when there are several), step 2 = install steps, Otto footer.
+   Roc Grotesk comes from Otto's Adobe Fonts kit; Archivo-like system fallbacks keep it readable if the kit fails. */
+:root{
+  --ink:#1A1A1A; --ink-2:#3E4043; --muted:#6F7276; --line:#E6E6E6; --card:#F7F7F7; --chip:#EFEFEF; --sky:#A0D5F7;
+  --ok:#16402E; --okbg:#DDF9E6;
+  --roc:"roc-grotesk",'Arial Narrow',Arial,sans-serif; --roc-c:"roc-grotesk-condensed",'Arial Narrow',Arial,sans-serif;
+  --body:'Source Sans 3',Arial,sans-serif;
+  color-scheme:light;
+}
+html{background:#fff}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 var(--body)}
+a{color:inherit}
+.nav{background:var(--card);padding:16px 120px}
+.nav-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:32px;min-height:44px}
+.nav-logo{display:flex;color:var(--ink)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{font-weight:700;text-decoration:none;border-radius:8px;padding:2px 8px}
+.nav-links a:hover{background:var(--chip)}
+.nav-cta{display:flex;gap:12px;justify-content:flex-end}
+.btn{font:700 16px/24px var(--body);text-decoration:none;border-radius:12px;padding:10px 16px;border:1px solid var(--ink);white-space:nowrap}
+.btn.dark{background:var(--ink);color:#F7F7F7}
+main{padding:84px 16px 160px}
+.wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:16px;position:relative}
+.wrap>*{position:relative;z-index:1}
+.wrap>.wave{position:absolute;z-index:0;top:46px;right:-59px;width:517px;height:224px;pointer-events:none}
+main{overflow-x:clip}
+.hero{padding:20px 8px 12px}
+h1{font:500 32px/50.4px var(--roc-c);margin:0}
+.hero p{margin:0;color:var(--muted)}
+.card{background:var(--card);border-radius:24px;padding:28px 32px;display:flex;flex-direction:column;gap:40px}
+.card-head{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.step{font:400 10.3px/20px var(--body);color:var(--ok);background:#fff;border-radius:6.5px;padding:0 6px}
+h2{font:500 24px/24px var(--roc-c);margin:0}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 8px}
+label{display:flex;flex-direction:column;gap:6px;font:600 12.8px/15px var(--body);color:var(--muted);min-width:0}
+input,select{font:300 12px/20px var(--body);color:var(--ink);background:#fff;border:1px solid var(--card);border-radius:10px;padding:11px 13px;width:100%;box-sizing:border-box}
+input::placeholder{color:#8A8D91}
+@media (max-width:640px){input,select{font-size:16px}} /* under 16px iPhone zooms in on focus */
+select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:36px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236F7276' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 13px center}
+input:hover,select:hover{border-color:var(--line)}
+input:focus-visible,select:focus-visible{outline:none;border-color:var(--ink)}
+.pick{display:flex;flex-direction:column;gap:20px;min-width:0}
+.card,.wrap>*{min-width:0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tabs:empty{display:none}
+.tab{font:600 14px/20px var(--body);border:0;background:#fff;color:var(--ink-2);border-radius:8px;padding:7px 12px;cursor:pointer}
+.tab span{color:var(--muted);font-weight:400}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff}
+.tab[aria-selected="true"] span{color:#C9CBCE}
+.mail{background:#fff;border-radius:16px;padding:24px;font:13px/20px Arial,Helvetica,sans-serif;color:#202124;overflow-x:auto}
+.mail-from{display:flex;align-items:center;gap:6px;padding-bottom:16px}
+.avatar{width:24px;height:24px;border-radius:50%;background:#1A73E8;color:#fff;font:700 8.6px/24px Arial,sans-serif;text-align:center;flex:none}
+.mail-from b{font-size:14px}
+.mail-from span{color:#9AA0A6}
+.mail-from em{font-style:normal;color:#4C8DF6}
+.mail p{margin:0 0 14px}
+.mail p:last-of-type{margin:0}
+.mail-sig{margin-top:40px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.btn-copy{font:600 14.4px/16px var(--body);background:var(--ink);color:#fff;border:0;border-radius:8px;padding:9px 18px;cursor:pointer}
+.btn-copy.alt{background:#fff;color:var(--ink)}
+.btn-copy[hidden]{display:none}
+.btn-copy:focus-visible,.tab:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+.status{font:600 14px var(--body);border-radius:8px;padding:6px 12px}
+.status:empty{display:none}
+.status.ok{background:var(--okbg);color:var(--ok)}
+.status.warn{background:#fff;color:var(--ink-2)}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.steps li{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:24px;background:#fff;border-radius:24px}
+ol.steps li[hidden]{display:none}
+.app{font:700 16px/11px var(--body);background:var(--card);border-radius:6.5px;padding:8px}
+ol.steps p{margin:0;color:var(--muted)}
+ol.steps li div{display:flex;flex-direction:column;gap:2px}
+ol.steps .path{font-weight:500;color:var(--ink)}
+.path i{display:inline-block;width:12px;height:12px;margin:0 6px;vertical-align:-1px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236F7276' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E") center/12px no-repeat}
+ol.steps b{font-weight:600;color:var(--ink)}
+kbd{font:600 12.8px var(--body);background:var(--card);border-radius:6px;padding:2px 7px}
+.foot{background:var(--ink);color:#F7F7F7;padding:120px;position:relative;overflow:hidden}
+.foot-in{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:80px;position:relative;z-index:1}
+.foot-top{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.foot-top svg{width:99px;height:40px}
+.foot-links{display:flex;gap:32px;flex-wrap:wrap}
+.foot-links a{font-weight:500;text-decoration:none}
+.foot-links a:hover,.foot-cols a:hover{text-decoration:underline}
+.foot-main{display:flex;flex-direction:column;gap:64px}
+.foot-cols{display:grid;grid-template-columns:1fr 1fr 486px;gap:24px;align-items:start}
+.foot-cols h4{font:600 16px/24px var(--body);margin:0 0 12px}
+.foot-cols p{margin:0 0 12px}
+.foot-cols .plain{text-decoration:none}
+.news{background:rgba(255,255,255,.15);border-radius:16px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.news b{display:block;font:500 20px/30px var(--roc)}
+.news span{font-weight:600}
+.news i{font:italic 600 16px/24px 'Source Serif 4',Georgia,serif}
+.btn.sky{background:var(--sky);border-color:var(--sky);color:var(--ink)}
+.credits{display:flex;flex-direction:column;gap:32px;border-top:1px solid var(--muted);padding-top:32px}
+.credits-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font:500 14px/21px var(--body)}
+.credits-right{display:flex;align-items:center;gap:24px;font:600 16px/24px var(--body)}
+.credits-right a{text-decoration:none}
+.socials{display:flex;gap:12px}
+.socials a{display:flex}
+.copy{font-size:14px;margin:-32px 0 0}
+.oval{position:absolute;right:0;bottom:-80px;width:720px;max-width:60%;opacity:.5;pointer-events:none}
+@media (max-width:1000px){
+  .nav{padding:16px 20px} .nav-in{grid-template-columns:auto 1fr} .nav-links{display:none} .nav-cta .btn:not(.dark){display:none}
+  .foot{padding:72px 20px} .foot-cols{grid-template-columns:1fr} .news{flex-wrap:wrap}
+}
+@media (max-width:640px){
+  main{padding:48px 16px 96px} .wrap>.wave{display:none} .card{padding:22px 20px;gap:28px} .fields{grid-template-columns:1fr} .mail{padding:20px} ol.steps li{padding:20px}
+}
+
+@font-face{font-family:HSHeadline;src:url(fonts/StackSansHeadline-Regular.ttf)}
+@font-face{font-family:HSTextLight;src:url(fonts/StackSansText-Light.ttf)}
+@font-face{font-family:HSText;src:url(fonts/StackSansText-Regular.ttf)}
+@media (min-width:641px){.fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tab{display:inline-flex;align-items:center;gap:8px}
+.tab i{width:12px;height:12px;border-radius:50%;flex:none}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:#fff;border-radius:24px;padding:32px}
+.cards figure{margin:0;display:flex;flex-direction:column;gap:10px}
+.cards svg{display:block;width:100%;height:auto;aspect-ratio:85/55;box-shadow:0 1px 3px rgba(0,0,0,.12),0 8px 24px rgba(0,0,0,.06)}
+.cards figcaption{font:400 12.8px/15px var(--body);color:var(--muted)}
+.btn-copy:disabled{opacity:.5;cursor:wait}
+@media (max-width:640px){.cards{grid-template-columns:1fr;padding:20px}}
+
+</style></head><body>
+<nav class="nav"><div class="nav-in">
+  <a class="nav-logo" href="https://www.ottocreatives.com/" aria-label="Otto Creatives home"><svg width="74" height="30" viewBox="0 0 74 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M74 19.1051C74 25.0308 69.1962 29.8346 63.2705 29.8346C57.3447 29.8346 52.5409 25.0308 52.5409 19.1051C52.5409 17.5255 52.8823 16.0257 53.4952 14.6753H47.3442C46.4303 14.6753 45.6895 15.4161 45.6895 16.33V21.7515C45.6895 22.6654 46.4303 23.4062 47.3442 23.4062H51.3436V29.5723H45.9452C44.5209 29.5723 42.727 28.9366 41.2882 27.7691C39.8365 26.5913 38.6979 24.8304 38.6979 22.5624V17.0617C38.6979 16.1181 39.2235 15.2563 40.0553 14.8226C40.1104 14.7938 40.1466 14.7375 40.1466 14.6753H32.9421C32.0282 14.6753 31.2874 15.4161 31.2874 16.33V21.7515C31.2874 22.6654 32.0282 23.4062 32.9421 23.4062H36.5902V29.5723H31.5431C30.1188 29.5723 28.3249 28.9366 26.8861 27.7691C25.4345 26.5913 24.2958 24.8304 24.2958 22.5624V17.0617C24.2958 16.118 24.8214 15.2563 25.6532 14.8226C25.7083 14.7938 25.7445 14.7375 25.7445 14.6753H20.5055C21.118 16.0253 21.4591 17.5246 21.4591 19.1036C21.4591 25.0294 16.6553 29.8332 10.7295 29.8332C4.80378 29.8332 0 25.0294 0 19.1036C0 13.1779 4.80378 8.3741 10.7295 8.3741C14.8628 8.3741 18.4502 10.7112 20.2423 14.136V8.58644H20.8818C24.0049 8.58644 26.5689 4.70619 26.5689 0.551546V-3.05176e-05H32.9817C33.2136 2.16835 33.4909 5.15662 32.0174 6.9508C31.2482 7.88735 30.1777 8.42886 29.0016 8.48448V8.58644H35.4703C38.5922 8.58454 40.7873 4.70517 40.7873 0.551546V-3.05176e-05H47.2001C47.4321 2.16835 47.7094 5.15662 46.2359 6.9508C45.4667 7.88735 44.3962 8.42886 43.2201 8.48449V8.58644H53.5821L53.6438 14.3614C55.3947 10.8149 59.0477 8.37554 63.2705 8.37554C69.1962 8.37554 74 13.1793 74 19.1051ZM58.8291 19.0594C58.8291 21.5119 60.8173 23.5001 63.2698 23.5001C65.7224 23.5001 67.7105 21.5119 67.7105 19.0594C67.7105 16.6068 65.7224 14.6187 63.2698 14.6187C60.8173 14.6187 58.8291 16.6068 58.8291 19.0594ZM6.28819 19.0579C6.28819 21.5105 8.27637 23.4987 10.7289 23.4987C13.1814 23.4987 15.1696 21.5105 15.1696 19.0579C15.1696 16.6054 13.1814 14.6172 10.7289 14.6172C8.27637 14.6172 6.28819 16.6054 6.28819 19.0579Z"/></svg></a>
+  <div class="nav-links"><a href="https://www.ottocreatives.com/services">Services</a><a href="https://www.ottocreatives.com/cases">Cases</a><a href="https://www.ottocreatives.com/about">About</a></div>
+  <div class="nav-cta"><a class="btn" href="https://www.ottocreatives.com/services">View bundles</a><a class="btn dark" href="https://www.ottocreatives.com/contact">Talk to us</a></div>
+</div></nav>
+
+
+<main><div class="wrap">
+  <header class="hero">
+    <h1>Harmoney business cards</h1>
+    <p>Fill in your details, pick a colour for the front, download the print file.</p>
+  </header>
+
+  <section class="card" aria-labelledby="h1s">
+    <div class="card-head"><span class="step">Step 1</span><h2 id="h1s">Fill in your details</h2></div>
+    <div class="fields">
+      <label for="f-name">Full name<input id="f-name" placeholder="Your Name" autocomplete="name"></label>
+      <label for="f-title">Job title<input id="f-title" placeholder="Your job title" autocomplete="organization-title"></label>
+      <label for="f-email">Email<input id="f-email" type="email" placeholder="name@myharmoney.eu" autocomplete="email"></label>
+      <label for="f-phone">Phone<input id="f-phone" type="tel" placeholder="+32 470 00 00 00" autocomplete="tel"></label>
+    </div>
+    <div class="pick">
+      <div class="tabs" id="tabs" role="tablist" aria-label="Front colour"></div>
+      <div class="cards">
+        <figure><svg id="front" viewBox="0 0 85 55" role="img" aria-label="Front"></svg><figcaption>Front</figcaption></figure>
+        <figure><svg id="back" viewBox="0 0 85 55" role="img" aria-label="Back"></svg><figcaption>Back</figcaption></figure>
+      </div>
+      <div class="actions"><button class="btn-copy" id="dl">Download print PDF</button><span class="status" id="status" role="status"></span></div>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="h2s">
+    <div class="card-head"><span class="step">Step 2</span><h2 id="h2s">Send it to the printer</h2></div>
+    <ol class="steps">
+      <li><span class="app">The file</span><div><p>One PDF per person: page 1 is the front, page 2 the back.</p><p><b>85 x 55 mm</b>, 3 mm bleed, crop marks, <b>PDF/X-1a:2001</b>, CMYK (Coated FOGRA39), fonts embedded.</p></div></li>
+      <li><span class="app">The order</span><div><p>Send the PDF as it is, do not open and save it in another app first. Ask for double-sided printing, front and back as in the file.</p></div></li>
+    </ol>
+  </section>
+</div></main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div class="foot-main">
+      <div class="foot-top">
+        <a class="nav-logo" style="color:#F7F7F7" href="https://www.ottocreatives.com/" aria-label="Otto Creatives home"><svg width="74" height="30" viewBox="0 0 74 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M74 19.1051C74 25.0308 69.1962 29.8346 63.2705 29.8346C57.3447 29.8346 52.5409 25.0308 52.5409 19.1051C52.5409 17.5255 52.8823 16.0257 53.4952 14.6753H47.3442C46.4303 14.6753 45.6895 15.4161 45.6895 16.33V21.7515C45.6895 22.6654 46.4303 23.4062 47.3442 23.4062H51.3436V29.5723H45.9452C44.5209 29.5723 42.727 28.9366 41.2882 27.7691C39.8365 26.5913 38.6979 24.8304 38.6979 22.5624V17.0617C38.6979 16.1181 39.2235 15.2563 40.0553 14.8226C40.1104 14.7938 40.1466 14.7375 40.1466 14.6753H32.9421C32.0282 14.6753 31.2874 15.4161 31.2874 16.33V21.7515C31.2874 22.6654 32.0282 23.4062 32.9421 23.4062H36.5902V29.5723H31.5431C30.1188 29.5723 28.3249 28.9366 26.8861 27.7691C25.4345 26.5913 24.2958 24.8304 24.2958 22.5624V17.0617C24.2958 16.118 24.8214 15.2563 25.6532 14.8226C25.7083 14.7938 25.7445 14.7375 25.7445 14.6753H20.5055C21.118 16.0253 21.4591 17.5246 21.4591 19.1036C21.4591 25.0294 16.6553 29.8332 10.7295 29.8332C4.80378 29.8332 0 25.0294 0 19.1036C0 13.1779 4.80378 8.3741 10.7295 8.3741C14.8628 8.3741 18.4502 10.7112 20.2423 14.136V8.58644H20.8818C24.0049 8.58644 26.5689 4.70619 26.5689 0.551546V-3.05176e-05H32.9817C33.2136 2.16835 33.4909 5.15662 32.0174 6.9508C31.2482 7.88735 30.1777 8.42886 29.0016 8.48448V8.58644H35.4703C38.5922 8.58454 40.7873 4.70517 40.7873 0.551546V-3.05176e-05H47.2001C47.4321 2.16835 47.7094 5.15662 46.2359 6.9508C45.4667 7.88735 44.3962 8.42886 43.2201 8.48449V8.58644H53.5821L53.6438 14.3614C55.3947 10.8149 59.0477 8.37554 63.2705 8.37554C69.1962 8.37554 74 13.1793 74 19.1051ZM58.8291 19.0594C58.8291 21.5119 60.8173 23.5001 63.2698 23.5001C65.7224 23.5001 67.7105 21.5119 67.7105 19.0594C67.7105 16.6068 65.7224 14.6187 63.2698 14.6187C60.8173 14.6187 58.8291 16.6068 58.8291 19.0594ZM6.28819 19.0579C6.28819 21.5105 8.27637 23.4987 10.7289 23.4987C13.1814 23.4987 15.1696 21.5105 15.1696 19.0579C15.1696 16.6054 13.1814 14.6172 10.7289 14.6172C8.27637 14.6172 6.28819 16.6054 6.28819 19.0579Z"/></svg></a>
+        <div class="foot-links"><a href="https://www.ottocreatives.com/">Home</a><a href="https://www.ottocreatives.com/services">Services</a><a href="https://www.ottocreatives.com/cases">Cases</a><a href="https://www.ottocreatives.com/about">About</a><a href="https://www.ottocreatives.com/contact">Contact</a></div>
+      </div>
+      <div class="foot-cols">
+        <div><h4>Brussels HQ</h4><p>Botanic Tower, Business Center<br>Boulevard Saint-Lazare 4 / 17<br>1210 Saint-Josse-ten-Noode<br>Belgium 🇧🇪</p><a href="https://maps.app.goo.gl/7g9a9DrRi15khmm4A" target="_blank" rel="noopener">Get directions</a></div>
+        <div><h4>Contact</h4><p><a class="plain" href="mailto:hello@ottocreatives.com">hello@ottocreatives.com</a><br><a class="plain" href="tel:+32494415379">+32 494 41 53 79</a></p><a href="mailto:hello@ottocreatives.com">Send us a message</a></div>
+        <div class="news"><div><b>Join our newsletter</b><span>Stay up to date on </span><i>news and insights.</i></div><a class="btn sky" href="https://tally.so/r/m6AOlB" target="_blank" rel="noopener">Sign up now</a></div>
+      </div>
+    </div>
+    <div class="credits">
+      <div class="credits-row">
+        <span>Thanks to you, we plant trees with <a href="https://goforest.be/" target="_blank" rel="noopener">GoForest</a>.</span>
+        <div class="credits-right">
+          <div class="socials"><a href="https://www.instagram.com/ottocreativescom/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M16 3.24268H8C5.23858 3.24268 3 5.48126 3 8.24268V16.2427C3 19.0041 5.23858 21.2427 8 21.2427H16C18.7614 21.2427 21 19.0041 21 16.2427V8.24268C21 5.48126 18.7614 3.24268 16 3.24268ZM19.25 16.2427C19.2445 18.0353 17.7926 19.4872 16 19.4927H8C6.20735 19.4872 4.75549 18.0353 4.75 16.2427V8.24268C4.75549 6.45003 6.20735 4.99817 8 4.99268H16C17.7926 4.99817 19.2445 6.45003 19.25 8.24268V16.2427ZM16.75 8.49268C17.3023 8.49268 17.75 8.04496 17.75 7.49268C17.75 6.9404 17.3023 6.49268 16.75 6.49268C16.1977 6.49268 15.75 6.9404 15.75 7.49268C15.75 8.04496 16.1977 8.49268 16.75 8.49268ZM12 7.74268C9.51472 7.74268 7.5 9.7574 7.5 12.2427C7.5 14.728 9.51472 16.7427 12 16.7427C14.4853 16.7427 16.5 14.728 16.5 12.2427C16.5027 11.0484 16.0294 9.90225 15.1849 9.05776C14.3404 8.21327 13.1943 7.74002 12 7.74268ZM9.25 12.2427C9.25 13.7615 10.4812 14.9927 12 14.9927C13.5188 14.9927 14.75 13.7615 14.75 12.2427C14.75 10.7239 13.5188 9.49268 12 9.49268C10.4812 9.49268 9.25 10.7239 9.25 12.2427Z"/></svg></a><a href="https://www.linkedin.com/company/ottocreatives/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M4.5 3.24268C3.67157 3.24268 3 3.91425 3 4.74268V19.7427C3 20.5711 3.67157 21.2427 4.5 21.2427H19.5C20.3284 21.2427 21 20.5711 21 19.7427V4.74268C21 3.91425 20.3284 3.24268 19.5 3.24268H4.5ZM8.52076 7.2454C8.52639 8.20165 7.81061 8.79087 6.96123 8.78665C6.16107 8.78243 5.46357 8.1454 5.46779 7.24681C5.47201 6.40165 6.13998 5.72243 7.00764 5.74212C7.88795 5.76181 8.52639 6.40728 8.52076 7.2454ZM12.2797 10.0044H9.75971H9.7583V18.5643H12.4217V18.3646C12.4217 17.9847 12.4214 17.6047 12.4211 17.2246C12.4203 16.2108 12.4194 15.1959 12.4246 14.1824C12.426 13.9363 12.4372 13.6804 12.5005 13.4455C12.7381 12.568 13.5271 12.0013 14.4074 12.1406C14.9727 12.2291 15.3467 12.5568 15.5042 13.0898C15.6013 13.423 15.6449 13.7816 15.6491 14.129C15.6605 15.1766 15.6589 16.2242 15.6573 17.2719C15.6567 17.6417 15.6561 18.0117 15.6561 18.3815V18.5629H18.328V18.3576C18.328 17.9056 18.3278 17.4537 18.3275 17.0018C18.327 15.8723 18.3264 14.7428 18.3294 13.6129C18.3308 13.1024 18.276 12.599 18.1508 12.1054C17.9638 11.3713 17.5771 10.7638 16.9485 10.3251C16.5027 10.0129 16.0133 9.81178 15.4663 9.78928C15.404 9.78669 15.3412 9.7833 15.2781 9.77989C14.9984 9.76477 14.7141 9.74941 14.4467 9.80334C13.6817 9.95662 13.0096 10.3068 12.5019 10.9241C12.4429 10.9949 12.3852 11.0668 12.2991 11.1741L12.2797 11.1984V10.0044ZM5.68164 18.5671H8.33242V10.01H5.68164V18.5671Z"/></svg></a></div>
+          <a href="https://www.ottocreatives.com/privacy-policy">Privacy Policy</a><a href="https://www.ottocreatives.com/cookie-policy">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+    <p class="copy">© <span id="year">2026</span> Otto Creatives. All rights reserved.</p>
+  </div>
+  <img class="oval" src="https://cdn.prod.website-files.com/68393ce860f4d02a1628aee1/683c234b870f2478d118d1d5_bg-oval-shape.avif" alt="">
+</footer>
+
+<script type="module" src="app.js"></script>
+</body></html>
